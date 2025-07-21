@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "125664788596",
+    "project_id": "flay-8faa5",
+    "storage_bucket": "flay-8faa5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125664788596:android:ceb210e1953aef93a89121",
+        "android_client_info": {
+          "package_name": "com.flay.shopping"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz1VnhiMnJ9WgbxFYlAK45nYn5DdFlFC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
