@@ -1,8 +1,8 @@
 import 'package:flay_app/core/configs/assets/app_images.dart';
-import 'package:flay_app/presentation/screens/main_screen.dart';
+import 'package:flay_app/presentation/home/pages/main_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/constants/app_fonts.dart';
+import '../../../core/constants/app_fonts.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});

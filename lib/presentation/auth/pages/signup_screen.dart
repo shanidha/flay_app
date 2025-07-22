@@ -12,7 +12,7 @@ import '../../../common/bloc/button/button_state_cubit.dart';
 import '../../../common/widgets/button/reactive_button.dart';
 import '../../../core/configs/assets/app_vectors.dart';
 import '../../../domain/auth/usecases/signup.dart';
-import '../../screens/navigation_screen.dart';
+import '../../home/pages/navigation_screen.dart';
 import '../bloc/gender_selection.dart';
 
 class SignupScreen extends StatefulWidget {

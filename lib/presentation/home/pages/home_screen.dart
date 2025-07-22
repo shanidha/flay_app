@@ -1,6 +1,8 @@
 import 'package:flay_app/core/configs/assets/app_images.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/configs/themes/app_colors.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -11,47 +13,52 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // sint _currentNavIndex = 0;
   final PageController _pageController = PageController(viewportFraction: 0.9);
-
+  int _currentBanner = 0;
   // Dummy data
   final List<String> _banners = [
     AppImages.banner1,
-     AppImages.banner2,
-   AppImages.banner3,
+    AppImages.banner2,
+    AppImages.banner3,
   ];
 
   final List<Map<String, String>> _categories = [
-    {'icon': 'assets/icons/jeans.png', 'label': 'Jeans'},
-    {'icon': 'assets/icons/dress.png', 'label': 'Dress'},
-    {'icon': 'assets/icons/skirt.png', 'label': 'Skirt'},
-    {'icon': 'assets/icons/tops.png', 'label': 'Tops'},
+    {'icon': 'assets/images/jeans.jpeg', 'label': 'Jeans'},
+    {'icon': 'assets/images/skirt.jpeg', 'label': 'Dress'},
+    {'icon': 'assets/images/shirt.jpeg', 'label': 'Skirt'},
+    {'icon': 'assets/images/top.png', 'label': 'Tops'},
   ];
 
   final List<Map<String, String>> _latestProducts = [
     {
-      'image': 'assets/images/crop_top.jpg',
+      'image': 'assets/images/wo.jpeg',
       'title': 'Crop Top',
       'subtitle': 'Oversized',
-      'price': 'Rs 720'
+      'price': 'Rs 720',
     },
     {
-      'image': 'assets/images/overcoat.jpg',
+      'image': 'assets/images/women.jpeg',
       'title': 'Overcoat Top',
       'subtitle': 'Irregular Rib',
-      'price': 'Rs 420'
+      'price': 'Rs 420',
     },
     {
-      'image': 'assets/images/oversized.jpg',
+      'image': 'assets/images/seco.jpeg',
       'title': 'Oversized Top',
       'subtitle': 'Loose Fit',
-      'price': 'Rs 549'
+      'price': 'Rs 549',
     },
     {
-      'image': 'assets/images/tshirt.jpg',
+      'image': 'assets/images/thirt.jpeg',
       'title': 'Tshirt',
       'subtitle': 'V shaped',
-      'price': 'Rs 499'
+      'price': 'Rs 499',
     },
   ];
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +78,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 16),
                     _buildBannerCarousel(),
                     const SizedBox(height: 24),
+                    //  Indicator dots
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(_banners.length, (idx) {
+                        final isActive = idx == _currentBanner;
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          width: isActive ? 16 : 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: isActive
+                                ? AppColors.primary
+                                : Colors.grey.shade300,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        );
+                      }),
+                    ),
+                     const SizedBox(height: 24),
                     _buildCategoryScroller(),
                     const SizedBox(height: 24),
                     _buildLatestHeader(),
@@ -86,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-     // bottomNavigationBar: _buildBottomNav(),
+      // bottomNavigationBar: _buildBottomNav(),
     );
   }
 
@@ -97,7 +124,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const Text(
             'Flay',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: AppColors.primary,
+            ),
           ),
           const Spacer(),
           IconButton(
@@ -116,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
             child: Container(
-          height: 48.0,
+              height: 48.0,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                 color: const Color(0xFFF2F2F2),
@@ -150,39 +181,48 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildBannerCarousel() {
-    return SizedBox(
-      height: 180,
-      child: PageView.builder(
-        controller: _pageController,
-        itemCount: _banners.length,
-        itemBuilder: (context, index) {
-          final image = _banners[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(image, fit: BoxFit.cover),
-                  Positioned(
-                    left: 16,
-                    bottom: 16,
-                    child: const Text(
-                      'Wear the real Fashion',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+    return Column(
+      children: [
+        SizedBox(
+          height: 180,
+          child: PageView.builder(
+            controller: _pageController,
+            itemCount: _banners.length,
+            onPageChanged: (index) {
+              setState(() {
+                _currentBanner = index;
+              });
+            },
+            itemBuilder: (context, index) {
+              final image = _banners[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset(image, fit: BoxFit.cover),
+                      Positioned(
+                        left: 16,
+                        bottom: 16,
+                        child: const Text(
+                          'Wear the real Fashion',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
-        },
-      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -220,7 +260,10 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: const [
-          Text('Latest', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(
+            'Latest',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
           Spacer(),
           Text('View All', style: TextStyle(color: Colors.grey)),
         ],
@@ -239,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisCount: 2,
           mainAxisSpacing: 16,
           crossAxisSpacing: 16,
-          childAspectRatio: 3/4,
+          childAspectRatio: 3 / 4,
         ),
         itemBuilder: (context, i) {
           final item = _latestProducts[i];
@@ -251,18 +294,36 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(child: Image.asset(item['image']!, fit: BoxFit.cover)),
+                      Expanded(
+                        child: Image.asset(item['image']!, fit: BoxFit.cover),
+                      ),
                       const SizedBox(height: 8),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(item['title']!, style: const TextStyle(fontWeight: FontWeight.w600)),
+                            Text(
+                              item['title']!,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                             const SizedBox(height: 4),
-                            Text(item['subtitle']!, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                            Text(
+                              item['subtitle']!,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            ),
                             const SizedBox(height: 4),
-                            Text(item['price']!, style: const TextStyle(fontWeight: FontWeight.bold)),
+                            Text(
+                              item['price']!,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -303,9 +364,15 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
-                    Text('30% Discount',
-                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                  children: [
+                    Text(
+                      '30% Discount',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(height: 8),
                     Text(
                       'Started several mistake joy painful reached',
@@ -313,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed:null,
+                      onPressed: null,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.black,
@@ -326,7 +393,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Image.asset('assets/images/promo.jpg', fit: BoxFit.cover),
+                child: Image.asset(
+                  'assets/images/CTA.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
@@ -350,9 +420,5 @@ class _HomeScreenState extends State<HomeScreen> {
   //   );
   // }
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
+ 
 }

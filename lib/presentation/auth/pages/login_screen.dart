@@ -2,7 +2,7 @@ import 'package:flay_app/common/bloc/button/button_state_cubit.dart';
 import 'package:flay_app/core/configs/themes/app_colors.dart';
 import 'package:flay_app/data/auth/models/user_signin_req.dart';
 import 'package:flay_app/domain/auth/usecases/signin.dart';
-import 'package:flay_app/presentation/screens/navigation_screen.dart';
+import 'package:flay_app/presentation/home/pages/navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocListener<ButtonStateCubit, ButtonState>(
         listener: (context, state) {
           if (state is ButtonSuccessState) {
-            // 🔑 on successful Login, navigate to your main screen:
+            // on successful Login, navigate to your main screen:
             AppNavigator.pushAndRemove(context, const NavigationScreen());
           } else if (state is ButtonFailureState) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -282,10 +282,10 @@ class _LoginScreenState extends State<LoginScreen> {
         minimumSize: const Size(50, 30),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
-      child: const Text(
+      child:  Text(
         'Forgot Password? Reset',
         style: TextStyle(
-          color: Colors.blue, // or AppColors.accent
+          color: AppColors.kBlueColor, 
           fontWeight: FontWeight.w500,
         ),
       ),

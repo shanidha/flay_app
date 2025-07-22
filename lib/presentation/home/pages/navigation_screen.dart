@@ -1,7 +1,7 @@
-import 'package:flay_app/presentation/screens/cart_screen.dart';
-import 'package:flay_app/presentation/screens/home_screen.dart';
-import 'package:flay_app/presentation/screens/profile_screen.dart';
-import 'package:flay_app/presentation/screens/wishlist_screen.dart';
+import 'package:flay_app/presentation/home/pages/cart_screen.dart';
+import 'package:flay_app/presentation/home/pages/home_screen.dart';
+import 'package:flay_app/presentation/home/pages/profile_screen.dart';
+import 'package:flay_app/presentation/home/pages/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 

@@ -1,6 +1,6 @@
 import 'package:flay_app/core/configs/assets/app_vectors.dart';
 import 'package:flay_app/core/configs/themes/app_colors.dart';
-import 'package:flay_app/presentation/screens/explore_screen.dart';
+import 'package:flay_app/presentation/home/pages/explore_screen.dart';
 import 'package:flay_app/presentation/splash/bloc/splash_cubit.dart';
 import 'package:flay_app/presentation/splash/bloc/splash_state.dart';
 import 'package:flutter/material.dart';

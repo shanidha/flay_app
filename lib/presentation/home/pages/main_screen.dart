@@ -2,8 +2,8 @@ import 'package:flay_app/core/configs/assets/app_vectors.dart';
 import 'package:flay_app/core/constants/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../auth/pages/login_screen.dart';
-import '../auth/pages/signup_screen.dart';
+import '../../auth/pages/login_screen.dart';
+import '../../auth/pages/signup_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});

@@ -1,3 +1,4 @@
+import 'package:flay_app/core/configs/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'wishlist_screen.dart';
@@ -6,13 +7,13 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sampleCart = [
-  Product('assets/images/shirt.jpg', 'Shirt', 'Box shape full sleeve', 'Rs 3290', 'L'),
-  Product('assets/images/coat_top.jpg', 'Coat Top', 'OverCoat', 'Rs 294 30% OFF', 'M'),
-  Product('assets/images/oversized_top.jpg', 'Oversized Top', 'Box shape full sleeve', 'Rs 440 20% OFF', 'S'),
-  Product('assets/images/skirt.jpg', 'Skirt', 'Short Cut', 'Rs 459', 'L'),
+  Product('assets/images/thirt.jpeg', 'Shirt', 'Box shape full sleeve', 'Rs 3290', 'L'),
+  Product('assets/images/women.jpeg', 'Coat Top', 'OverCoat', 'Rs 294 30% OFF', 'M'),
+  Product('assets/images/wo.jpeg', 'Oversized Top', 'Box shape full sleeve', 'Rs 440 20% OFF', 'S'),
+  Product('assets/images/seco.jpeg', 'Skirt', 'Short Cut', 'Rs 459', 'L'),
 ];
     return Scaffold(
-      appBar: _buildAppBar('My Cart'),
+      appBar: _buildAppBar('Flay'),
       body: Column(
         children: [
           Expanded(
@@ -31,12 +32,13 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: double.infinity,
+            width: 350,
             child: ElevatedButton.icon(
               onPressed: () {},
-              icon: const Icon(Icons.arrow_forward),
-              label: const Text('PLACE ORDER'),
+              icon: const Icon(Icons.chevron_right),
+              label: const Text('PLACE ORDER',style: TextStyle(color: AppColors.background),),
               style: ElevatedButton.styleFrom(
+                
                 backgroundColor: Colors.black,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -54,13 +56,14 @@ class CartScreen extends StatelessWidget {
         elevation: 1,
         title: Text(title, style: const TextStyle(color: Colors.black)),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search, color: Colors.black54)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.notifications_outlined, color: Colors.black54)),
         ],
       );
 
   Widget _buildCartItem(BuildContext c, Product p) {
     return Card(
+      
+      color: AppColors.background,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 2,
       child: ListTile(
@@ -78,26 +81,7 @@ class CartScreen extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                DropdownButton<String>(
-                  value: p.size,
-                  items: ['S', 'M', 'L', 'XL']
-                      .map((s) => DropdownMenuItem(value: s, child: Text(s)))
-                      .toList(),
-                  onChanged: (_) {},
-                ),
-                const SizedBox(width: 8),
-                DropdownButton<int>(
-                  value: 1,
-                  items: [1, 2, 3, 4]
-                      .map((q) => DropdownMenuItem(value: q, child: Text(q.toString())))
-                      .toList(),
-                  onChanged: (_) {},
-                ),
-              ],
-            ),
+           
           ],
         ),
       ),

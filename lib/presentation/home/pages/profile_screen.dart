@@ -1,3 +1,4 @@
+import 'package:flay_app/core/configs/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -11,14 +12,14 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              const CircleAvatar(radius: 32, backgroundImage: AssetImage('assets/images/user.jpg')),
+              const CircleAvatar(radius: 32, backgroundImage: AssetImage('assets/images/user.png')),
               const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text('Amaira Shifan', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text('Amaira Shifan', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: AppColors.primary)),
                   SizedBox(height: 4),
-                  Text('amira414@gmail.com', style: TextStyle(color: Colors.grey)),
+                  Text('amira414@gmail.com', style: TextStyle(color: AppColors.kHintStyle)),
                 ],
               ),
             ],
@@ -43,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
               ),
-              child: const Text('LOGOUT'),
+              child: const Text('LOGOUT',style: TextStyle(color: AppColors.background),),
             ),
           ),
         ],
@@ -60,12 +61,13 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildProfileTile(String label, IconData icon) {
     return Card(
+      color: AppColors.background,
       margin: const EdgeInsets.symmetric(vertical: 6),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       elevation: 1,
       child: ListTile(
         leading: Icon(icon, color: Colors.black54),
-        title: Text(label, style: const TextStyle(fontWeight: FontWeight.w600)),
+        title: Text(label, style: const TextStyle(fontWeight: FontWeight.w600,color: AppColors.primary)),
         trailing: const Icon(Icons.chevron_right, color: Colors.black54),
         onTap: () {},
       ),
