@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flay_app/presentation/splash/bloc/splash_cubit.dart';
+import 'package:flay_app/features/splash/presentation/bloc/splash_cubit.dart';
 import 'package:flay_app/service_locator.dart' show initializeDependencies;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/configs/themes/app_themes.dart';
-import 'presentation/splash/pages/splash_screen.dart';
+import 'features/splash/presentation/pages/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
